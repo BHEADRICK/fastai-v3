@@ -9,10 +9,12 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
+export_file_url = 'https://www.googleapis.com/drive/v3/files/1b-z-JhpX2AP5Dw0fsDjnA9BECyTPYc1M?alt=media&key=d6ccd2a3730342645a624bf9a7169146fc8d54e3'
 export_file_name = 'export.pkl'
 
-classes = ['black', 'grizzly', 'teddys']
+classes =  ['', 'brick corner 1x2x2', '2x2 brick', '1x2 brick', '1x1 brick', '2x2 plate', '1x2 plate', '1x1 plate', '1x2 brick', '1x2 flat plate', 'technic pin', 'technic bush',
+          '1x2 plate with 1 stud', 'round flat technic thing', 'technic axle pin 3L with friction ridges and 1L axle',
+          'technic axle pin 3l with friction ridges and 2l axle', 'technic bush 1/2']
 path = Path(__file__).parent
 
 app = Starlette()
