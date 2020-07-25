@@ -8,6 +8,7 @@ from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
+import logging
 
 export_file_url = 'https://drive.google.com/uc?export=download&id=1b-z-JhpX2AP5Dw0fsDjnA9BECyTPYc1M'
 export_file_name = 'export.pkl'
@@ -63,8 +64,8 @@ async def analyze(request):
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
-    print(prediction)
-    return JSONResponse({'result': prediction})
+
+    return JSONResponse({'result': classes[int(str(prediction))]})
 
 
 if __name__ == '__main__':
