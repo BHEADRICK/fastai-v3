@@ -9,11 +9,11 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_file_url = 'https://www.googleapis.com/drive/v3/files/1b-z-JhpX2AP5Dw0fsDjnA9BECyTPYc1M?alt=media&key=d6ccd2a3730342645a624bf9a7169146fc8d54e3'
+export_file_url = 'https://drive.google.com/uc?export=download&id=1b-z-JhpX2AP5Dw0fsDjnA9BECyTPYc1M'
 export_file_name = 'export.pkl'
 
-classes =  ['', 'brick corner 1x2x2', '2x2 brick', '1x2 brick', '1x1 brick', '2x2 plate', '1x2 plate', '1x1 plate', '1x2 brick', '1x2 flat plate', 'technic pin', 'technic bush',
-          '1x2 plate with 1 stud', 'round flat technic thing', 'technic axle pin 3L with friction ridges and 1L axle',
+classes = ['', 'brick corner 1x2x2', '2x2 brick', '1x2 brick', '1x1 brick', '2x2 plate', '1x2 plate', '1x1 plate', '1x2 brick', '1x2 flat plate', 'technic pin', 'technic bush',
+          '1x2 plate with 1 stud', 'Technic Liftarm 1 x 3 Thin', 'technic axle pin 3L with friction ridges and 1L axle',
           'technic axle pin 3l with friction ridges and 2l axle', 'technic bush 1/2']
 path = Path(__file__).parent
 
