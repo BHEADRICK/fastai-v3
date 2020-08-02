@@ -13,9 +13,12 @@ import logging
 export_file_url = 'https://drive.google.com/uc?export=download&id=1b-z-JhpX2AP5Dw0fsDjnA9BECyTPYc1M'
 export_file_name = 'export.pkl'
 
-classes = ['', 'brick corner 1x2x2', '2x2 brick', '1x2 brick', '1x1 brick', '2x2 plate', '1x2 plate', '1x1 plate', '1x2 brick', '1x2 flat plate', 'technic pin', 'technic bush',
-          '1x2 plate with 1 stud', 'Technic Liftarm 1 x 3 Thin', 'technic axle pin 3L with friction ridges and 1L axle',
-          'technic axle pin 3l with friction ridges and 2l axle', 'technic bush 1/2']
+classes = ['Brick_1x1',
+  'Brick_1x2',
+  'Brick_1x4',
+  'Brick_2x1L',
+  'Brick_2x2',
+  'Brick_2x3']
 path = Path(__file__).parent
 
 app = Starlette()
@@ -63,9 +66,9 @@ async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    prediction = learn.predict(img)[0]
+    pred_class,pred_idx,outputs = learn.predict(img)[0]
 
-    return JSONResponse({'result': classes[int(str(prediction))]})
+    return JSONResponse({'result': classes[pred_class.obj]})
 
 
 if __name__ == '__main__':
