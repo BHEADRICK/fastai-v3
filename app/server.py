@@ -66,10 +66,11 @@ async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    # pred_class,pred_idx,outputs = learn.predict(img)[0]
-    prediction = learn.predict(img)[0]
-    return JSONResponse({'result': str(prediction)})
-    # return JSONResponse({'result': classes[pred_class.obj]})
+    pred_class,pred_idx,outputs = learn.predict(img)[0]
+    prob = round(float(outputs[int(pred_idx)]) * 100)
+    # prediction = learn.predict(img)[0]
+    # return JSONResponse({'result': str(prediction)})
+    return JSONResponse({'result': "I am {}% certain that this is a {} Lego".format(prob,pred_class.obj)})
 
 
 if __name__ == '__main__':
