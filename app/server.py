@@ -64,7 +64,7 @@ async def analyze(request):
     img = open_image(BytesIO(img_bytes))
     pred_class, pred_idx, outputs = learn.predict(img)
     prob = round(float(outputs[int(pred_idx)]) * 100)
-    logging.debug(outputs)
+
     # prediction = learn.predict(img)[0]
     # return JSONResponse({'result': str(prediction)})
     return JSONResponse({'result': "I am {}% certain that this is a {} Lego".format(prob,pred_class)})
