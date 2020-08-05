@@ -11,15 +11,10 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 import logging
 
-export_file_url = 'https://drive.google.com/uc?export=download&id=1b-z-JhpX2AP5Dw0fsDjnA9BECyTPYc1M'
+export_file_url = 'https://drive.google.com/uc?export=download&id=12ukgwGzLrK_7Uts8UgzVnSHNHANa8cGo'
 export_file_name = 'export.pkl'
 
-classes = ['Brick_1x1',
-  'Brick_1x2',
-  'Brick_1x4',
-  'Brick_2x1L',
-  'Brick_2x2',
-  'Brick_2x3']
+
 path = Path(__file__).parent
 
 app = Starlette()
@@ -69,10 +64,10 @@ async def analyze(request):
     img = open_image(BytesIO(img_bytes))
     pred_class, pred_idx, outputs = learn.predict(img)
     prob = round(float(outputs[int(pred_idx)]) * 100)
-    logging.info(json.dump((pred_idx, pred_class)))
+    logging.debug(outputs)
     # prediction = learn.predict(img)[0]
     # return JSONResponse({'result': str(prediction)})
-    return JSONResponse({'result': "I am {}% certain that this is a {} Lego".format(prob,pred_class.obj)})
+    return JSONResponse({'result': "I am {}% certain that this is a {} Lego".format(prob,pred_class)})
 
 
 if __name__ == '__main__':
